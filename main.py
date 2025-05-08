@@ -60,9 +60,9 @@ def check_port(ip, port, blacklist):
                     if word in content:
                         with open('blacklisted_hits.txt', 'a') as bfile:
                             bfile.write(f"{ip}:{port} - matched word: '{word}'\n")
-                        return  # Skip saving this IP
+                        return
         except:
-            return  # Couldn't fetch or parse, skip
+            return
 
         port_counts[port] = port_counts.get(port, 0) + 1
         with open(f'port_{port}.txt', 'a') as f:
