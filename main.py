@@ -58,7 +58,9 @@ def check_port(ip, port, blacklist):
                 content = response.text.lower()
                 for word in blacklist:
                     if word in content:
-                        return  # Blacklisted content, skip saving
+                        with open('blacklisted_hits.txt', 'a') as bfile:
+                            bfile.write(f"{ip}:{port} - matched word: '{word}'\n")
+                        return  # Skip saving this IP
         except:
             return  # Couldn't fetch or parse, skip
 
